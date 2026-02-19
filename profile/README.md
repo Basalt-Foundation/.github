@@ -2,26 +2,47 @@
 
 High-performance Layer 1 blockchain built on .NET 9 with Native AOT compilation.
 
+## Key Numbers
+
+| | |
+|---|---|
+| **~12,000 TPS** | Throughput on 4-validator devnet |
+| **800ms** | Deterministic finality (BasaltBFT) |
+| **~2,000 tests** | Across 16 test projects, 0 failures |
+| **30 projects** | Mono-repo: core → SDK → explorer |
+
 ## Architecture
 
-Basalt combines institutional-grade compliance with cutting-edge blockchain technology:
+Seven independent layers — each production-hardened and fully tested:
 
-- **BFT Consensus** — Byzantine fault-tolerant protocol with pipelined block finalization
-- **Native AOT** — Ahead-of-time compiled for bare-metal performance
-- **BLS12-381 + Ed25519** — Dual cryptographic scheme for signatures and aggregate consensus
-- **Merkle Patricia Trie** — Ethereum-compatible state storage with cryptographic proofs
-- **Smart Contracts** — .NET-based contract SDK with Roslyn analyzers for safety guarantees
-- **Built-in Compliance** — Identity, KYC, and sanctions screening at the protocol level
-- **Zero-Knowledge Privacy** — Pedersen commitments, Groth16 proofs, and encrypted channels
-- **EVM Bridge** — Cross-chain interoperability with Ethereum and EVM-compatible networks
+| Layer | Components |
+|-------|------------|
+| **Cryptography** | BLAKE3, Ed25519, BLS12-381, Keccak-256, Groth16 |
+| **Consensus** | BasaltBFT, pipelined 3-phase commit, BLS aggregation, stake-weighted leader selection, slashing |
+| **Execution** | BasaltVM, C# Native AOT, sandboxed contracts, gas metering, compliance hooks |
+| **Storage** | Merkle Patricia Trie, RocksDB, Flat State DB (O(1) cache), Sparse Merkle Tree |
+| **Network** | TCP transport, Kademlia DHT, Episub gossip, peer reputation |
+| **Compliance** | ZK-first (Groth16 proofs), attestation fallback, SchemaRegistry, IssuerRegistry, audit trail |
+| **Confidentiality** | Pedersen commitments, Groth16 range proofs, X25519 private channels, selective disclosure |
+
+## What Makes Basalt Different
+
+- **ZK Compliance** — Transactions carry ephemeral Groth16 proofs. Validators verify compliance in constant time. Nothing is stored on-chain.
+- **C# Smart Contracts** — Write contracts in idiomatic C# with `StorageMap`, `StorageValue`, and `StorageList`. 8 Roslyn analyzers catch reentrancy, overflows, and non-determinism at compile time.
+- **Confidential Transactions** — Pedersen commitments on BLS12-381 hide amounts while proving balance validity. 192-byte range proofs verified in ~5ms.
+- **EVM Bridge** — Bidirectional bridge to Ethereum and Polygon with multisig relayer and Merkle proof verification.
+- **Token Standards** — BST-20 (fungible), BST-721 (NFT), BST-1155 (multi-token), BST-3525 (SFT), BST-4626 (vault), BST-DID (W3C DID), BST-VC (verifiable credentials)
+- **EIP-1559 Fees** — Dynamic base fee with proposer tips and base fee burn
+- **Full Governance** — Stake-weighted quadratic voting, delegation, timelock, executable proposals
 
 ## Repositories
 
 | Repository | Description |
 |------------|-------------|
-| [basalt](https://github.com/Basalt-Foundation/basalt) | Core blockchain — consensus, networking, execution, APIs, SDK, explorer, and tools |
+| [basalt](https://github.com/Basalt-Foundation/basalt) | Core blockchain — consensus, networking, execution, storage, compliance, confidentiality, APIs, SDK, explorer, and tools |
 | [basalt-docs](https://github.com/Basalt-Foundation/basalt-docs) | Technical documentation and specifications |
 | [basalt-contracts](https://github.com/Basalt-Foundation/basalt-contracts) | Solidity bridge contracts for EVM interoperability |
+| [basalt-website](https://github.com/Basalt-Foundation/basalt-website) | Marketing website ([basalt-foundation.github.io/basalt-website](https://basalt-foundation.github.io/basalt-website/)) |
 
 ## Quick Start
 
@@ -31,7 +52,7 @@ git clone https://github.com/Basalt-Foundation/basalt.git
 cd basalt
 dotnet build
 
-# Run tests (1,380+ tests)
+# Run tests (~2,000 tests)
 dotnet test
 
 # Start a local 4-validator devnet
