@@ -7,7 +7,7 @@ High-performance Layer 1 blockchain built on .NET 9 with Native AOT compilation.
 | | |
 |---|---|
 | **~2,000 TPS** | Throughput on 4-validator devnet |
-| **2000ms** | Deterministic finality (BasaltBFT) |
+| **4000ms** | Deterministic finality (BasaltBFT) |
 | **+2,000 tests** | Across 16 test projects, 0 failures |
 | **30 projects** | Mono-repo: core → SDK → explorer |
 
