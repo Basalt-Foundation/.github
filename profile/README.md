@@ -44,7 +44,7 @@ Seven independent layers — each production-hardened and fully tested:
 | [basalt](https://github.com/Basalt-Foundation/basalt) | Core blockchain — consensus, networking, execution, storage, compliance, confidentiality, APIs, SDK, explorer, and tools |
 | [basalt-docs](https://github.com/Basalt-Foundation/basalt-docs) | Technical documentation and specifications |
 | [basalt-contracts](https://github.com/Basalt-Foundation/basalt-contracts) | Solidity bridge contracts for EVM interoperability |
-| [basalt-website](https://github.com/Basalt-Foundation/basalt-website) | Marketing website ([basalt-foundation.github.io/basalt-website](https://basalt.foundation/)) |
+| [basalt-website](https://basalt.foundation) | Marketing website ([basalt-foundation.github.io/basalt-website](https://basalt.foundation/)) |
 
 ## Quick Start
 
